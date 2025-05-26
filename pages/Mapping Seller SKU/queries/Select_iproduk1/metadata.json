@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n  iprodid, nama, kemasan, satuan, hna, aktif, sku_ecom\nFROM\n  iproduk\nWHERE\n  nama LIKE '%{{Table2.searchText}}%'\n  and divprodid_new = 'OTC' and aktif = 'Y'\norder by nama asc;",
+      "body": "select  \na.nama_group, ip.iprodid, ip.nama, ip.satuan, ip.kemasan, ip.hna, ip.aktif,ip.sku_ecom\nfrom dbevi.iproduk ip -- ,a.nama_brand,\nleft join (\nselect \n\t a.iprodid, g.`group` as nama_group, g.nama_brand\nfrom \n\tdbevi.ytdprodchc as a \njoin (select iprodid, max(bulan) as bulan \n           from dbevi.ytdprodchc \n           group by 1) as b on a.iprodid = b.iprodid and a.bulan = b.bulan\njoin dbevi.groupprodukchc g on a.groupproduk = LPAD(g.id,2,0) )\nas a on a.iprodid = ip.iProdId\nwhere \nnama LIKE '%{{Table2.searchText}}%'\nand ip.divprodid_new = 'OTC' and ip.aktif = 'Y'\norder by ip.nama asc\n;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

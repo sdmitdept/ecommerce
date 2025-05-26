@@ -5,7 +5,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 192,
+  "bottomRow": 195,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": true,
@@ -34,6 +34,7 @@
   },
   "columnOrder": [
     "iprodid",
+    "nama_group",
     "nama",
     "satuan",
     "kemasan",
@@ -41,14 +42,15 @@
     "aktif",
     "sku_ecom"
   ],
-  "columnUpdatedAt": 1747906931551,
+  "columnUpdatedAt": 1748250060051,
   "columnWidthMap": {
     "aktif": 69,
     "customColumn1": 60,
     "hna": 101,
     "iprodid": 112,
-    "kemasan": 112,
-    "nama": 654,
+    "kemasan": 107,
+    "nama": 466,
+    "nama_brand": 88,
     "satuan": 88
   },
   "customIsLoading": false,
@@ -91,10 +93,13 @@
       "key": "primaryColumns.aktif.computedValue"
     },
     {
-      "key": "primaryColumns.sku_ecom.computedValue"
+      "key": "primaryColumns.iprodid.computedValue"
     },
     {
-      "key": "primaryColumns.iprodid.computedValue"
+      "key": "primaryColumns.nama_group.computedValue"
+    },
+    {
+      "key": "primaryColumns.sku_ecom.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -114,9 +119,6 @@
     },
     {
       "key": "onAddNewRowSave"
-    },
-    {
-      "key": "primaryColumns.sku_ecom.onSubmit"
     }
   ],
   "enableClientSideSearch": false,
@@ -128,7 +130,7 @@
   "isSortable": true,
   "isVisible": true,
   "isVisibleDownload": true,
-  "isVisibleFilters": false,
+  "isVisibleFilters": true,
   "isVisiblePagination": true,
   "isVisibleSearch": true,
   "key": "j6pyrzb81h",
@@ -142,7 +144,7 @@
   "needsErrorInfo": false,
   "onAddNewRowSave": "{{Insert_iproduk1.run(() => {\n            showAlert(\"Successfully created!\");\n            Select_iproduk1.run()\n          }, () => {\n            showAlert(\"Unable to create!\");\n          })}}",
   "onPageChange": "{{\n            Select_iproduk1.run();\n            Total_record_iproduk1.run()\n          }}",
-  "onSearchTextChanged": "{{\n            Select_iproduk1.run();\n            Total_record_iproduk1.run()\n          }}",
+  "onSearchTextChanged": "{{updateSku.run().catch(() => {\n  showAlert('Nama SKU tidak boleh sama.', 'warning');\n});}}",
   "onSort": "{{\n            Select_iproduk1.run();\n            Total_record_iproduk1.run()\n          }}",
   "parentColumnSpace": 16.5,
   "parentId": "3kg7u6u6nr",
@@ -275,7 +277,7 @@
     },
     "nama": {
       "alias": "nama",
-      "allowCellWrapping": false,
+      "allowCellWrapping": true,
       "allowSameOptionsInNewRow": true,
       "columnType": "text",
       "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"nama\"]))}}",
@@ -298,6 +300,40 @@
       "notation": "standard",
       "originalId": "nama",
       "sticky": "",
+      "textSize": "0.875rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 150
+    },
+    "nama_group": {
+      "alias": "nama_group",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"nama_group\"]))}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "nama_group",
+      "index": 0,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": true,
+      "label": "Group Brand",
+      "notation": "standard",
+      "originalId": "nama_group",
+      "sticky": "",
+      "textColor": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
       "validation": {},
@@ -339,15 +375,17 @@
       "alias": "sku_ecom",
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
       "columnType": "text",
       "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"sku_ecom\"]))}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
       "enableSort": true,
+      "fontStyle": "",
       "horizontalAlignment": "LEFT",
       "id": "sku_ecom",
-      "index": 41,
+      "index": 8,
       "isCellEditable": true,
       "isCellVisible": true,
       "isDerived": false,
@@ -358,9 +396,9 @@
       "isVisible": true,
       "label": "SKU",
       "notation": "standard",
-      "onSubmit": "{{updateSku.run()}}",
       "originalId": "sku_ecom",
       "sticky": "",
+      "textColor": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
       "validation": {},

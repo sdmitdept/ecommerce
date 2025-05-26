@@ -1,8 +1,18 @@
-SELECT
-  iprodid, nama, kemasan, satuan, hna, aktif, sku_ecom
-FROM
-  iproduk
-WHERE
-  nama LIKE '%{{Table2.searchText}}%'
-  and divprodid_new = 'OTC' and aktif = 'Y'
-order by nama asc;
+select  
+a.nama_group, ip.iprodid, ip.nama, ip.satuan, ip.kemasan, ip.hna, ip.aktif,ip.sku_ecom
+from dbevi.iproduk ip -- ,a.nama_brand,
+left join (
+select 
+	 a.iprodid, g.`group` as nama_group, g.nama_brand
+from 
+	dbevi.ytdprodchc as a 
+join (select iprodid, max(bulan) as bulan 
+           from dbevi.ytdprodchc 
+           group by 1) as b on a.iprodid = b.iprodid and a.bulan = b.bulan
+join dbevi.groupprodukchc g on a.groupproduk = LPAD(g.id,2,0) )
+as a on a.iprodid = ip.iProdId
+where 
+nama LIKE '%{{Table2.searchText}}%'
+and ip.divprodid_new = 'OTC' and ip.aktif = 'Y'
+order by ip.nama asc
+;
