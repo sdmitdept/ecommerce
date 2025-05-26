@@ -1,0 +1,4 @@
+SELECT *
+FROM ecom_order_shipments
+-- GROUP by tgl_kirim
+order by tgl_kirim;

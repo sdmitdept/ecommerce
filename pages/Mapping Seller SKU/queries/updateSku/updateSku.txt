@@ -1,0 +1,4 @@
+UPDATE iproduk SET
+    sku_ecom = '{{Table2.updatedRow.sku_ecom}}'
+  WHERE iprodid = {{Table2.updatedRow.iprodid}}
+	; -- Specify a valid condition here. Removing the condition may update every row in the table!

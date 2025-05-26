@@ -1,0 +1,8 @@
+SELECT
+  iprodid, nama, kemasan, satuan, hna, aktif, sku_ecom
+FROM
+  iproduk
+WHERE
+  nama LIKE '%{{Table2.searchText}}%'
+  and divprodid_new = 'OTC' and aktif = 'Y'
+order by nama asc;

@@ -1,0 +1,9 @@
+select 
+b.nama_ecom,a.tgl_kirim ,waktu_upload,a.order_id,a.no_resi,a.order_seller_sku,a.produk_combo,
+case when a.seller_sku is null
+	then a.order_seller_sku 
+	else a.seller_sku end as 'seller_sku', 
+	a.qty
+from dbevi.ecom_order_shipments_daily a
+join dbevi.ecom_master_platform b on a.ecom_id = b.ecom_id 
+order by order_id, no_resi, seller_sku asc;

@@ -1,0 +1,20 @@
+{
+  "gitSyncId": "682ea91b0f42c0201158e75b_27b05fd9-3599-4358-b291-a45392a84129",
+  "id": "Import Data_JSObject1",
+  "unpublishedCollection": {
+    "name": "JSObject1",
+    "pageId": "Import Data",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "myVar1",
+        "value": "[]"
+      },
+      {
+        "name": "myVar2",
+        "value": "{}"
+      }
+    ]
+  }
+}
