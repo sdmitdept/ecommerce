@@ -49,8 +49,9 @@
     "hna": 101,
     "iprodid": 112,
     "kemasan": 107,
-    "nama": 466,
+    "nama": 479,
     "nama_brand": 88,
+    "nama_group": 127,
     "satuan": 88
   },
   "customIsLoading": false,
@@ -119,6 +120,9 @@
     },
     {
       "key": "onAddNewRowSave"
+    },
+    {
+      "key": "primaryColumns.sku_ecom.onSubmit"
     }
   ],
   "enableClientSideSearch": false,
@@ -396,6 +400,7 @@
       "isVisible": true,
       "label": "SKU",
       "notation": "standard",
+      "onSubmit": "{{updateSku.run().then(() => {\n  showAlert('berhasil', 'info');\n}).catch(() => {\n  showAlert('Nama SKU tidak boleh sama.', 'warning');\n  Select_iproduk1.run().catch(() => {\n    howAlert('failure');\n  });\n});}}",
       "originalId": "sku_ecom",
       "sticky": "",
       "textColor": "",
